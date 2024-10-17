@@ -23,7 +23,7 @@ $city = $db-> escapeStrings($_POST["city"]);
 $OS_ID = $db-> escapeStrings($_POST["OS_ID"]);
 
 
-$db->query("INSERT INTO recytech_orders (name, email, phone, address, postal_code, city, OS_ID) VALUES (?, ?, ?, ?, ?, ?, ?)", [$name, $email, $phone, $address, $postal_code, $city, $OS_ID]);
+$db->query("INSERT INTO recytech_orders (name, email, phone, address, postal_code, city, OS_ID, order_date) VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_DATE())", [$name, $email, $phone, $address, $postal_code, $city, $OS_ID]);
 
 $orderId = $db->getLastInsertedID();
 
