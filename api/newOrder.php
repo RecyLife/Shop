@@ -32,3 +32,5 @@ for ($i=0; $i < count($ids); $i++) {
         INSERT INTO recytech_order_products (order_ID, product_ID, quantity)
         VALUES ('$orderId', '$ids[$i]', '$quantities[$i]')");
 }
+
+mail("team@recytech.me", "New order", "New order with ID: $orderId");
