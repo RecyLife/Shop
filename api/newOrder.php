@@ -20,10 +20,10 @@ $phone = $db-> escapeStrings($_POST["phone"]);
 $address = $db-> escapeStrings($_POST["address"]);
 $postal_code = $db-> escapeStrings($_POST["postal_code"]);
 $city = $db-> escapeStrings($_POST["city"]);
+$OS_ID = $db-> escapeStrings($_POST["OS_ID"]);
 
-$db -> query("
-    INSERT INTO recytech_orders (name, email, phone, address, postal_code, city)
-    VALUES ('$name', '$email', '$phone', '$address', '$postal_code', '$city')");
+
+$db->query("INSERT INTO recytech_orders (name, email, phone, address, postal_code, city, OS_ID, order_date) VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_DATE())", [$name, $email, $phone, $address, $postal_code, $city, $OS_ID]);
 
 $orderId = $db->getLastInsertedID();
 
@@ -32,3 +32,5 @@ for ($i=0; $i < count($ids); $i++) {
         INSERT INTO recytech_order_products (order_ID, product_ID, quantity)
         VALUES ('$orderId', '$ids[$i]', '$quantities[$i]')");
 }
+
+mail("team@recytech.me", "New order", "New order with ID: $orderId");
