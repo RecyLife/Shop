@@ -5,15 +5,15 @@ include_once(dirname(__FILE__) . "/utils/database.php");
 
 
 $db = new Database;
-$id = intval($db -> escapeStrings($_GET["pdocutID"]));
+$id = intval($db -> escapeStrings($_GET["product_ID"]));
 $quality = 50;
 if(isset( $_GET["quality"] )) {
     $quality = intval($_GET["quality"]);
 }
-$imageID = intval($db -> escapeStrings($_GET["imageID"]));
+$imageID = intval($db -> escapeStrings($_GET["image_ID"]));
 
 
-$image = $db -> select("SELECT image_ FROM recytech_images WHERE product_ID = ? AND image_ID = ?", [$id, $imageID]);
+$image = $db -> select("SELECT image_ FROM recytech_images WHERE product_ID = ? AND ID = ?", [$id, $imageID]);
 
 if(count($image) < 1) {
     exit();

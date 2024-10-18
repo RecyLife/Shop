@@ -40,16 +40,12 @@ if(count($product) < 1) {
 $specifications = $db -> select("SELECT * from recytech_specifications WHERE product_ID = ?", [$id]);
 $product[0]["specifications"] = array_values($specifications);
 
-if($withImages) {
-    $imagesResult = array();
-    $images = $db -> select("SELECT * from recytech_images WHERE product_ID = ?", [$id]);
+$imageIDs = $db->select("
+SELECT ID 
+FROM recytech_images 
+WHERE product_ID = ?", [$product[0]['ID']]);
 
-    for ($i=0; $i < count($images); $i++) { 
-        array_push($imagesResult, base64_encode($images[$i]["image_"]));
-    }
-
-    $product[0]["images"] = array_values($imagesResult);
-}
+$product[0]['image_ids'] = array_column($imageIDs, 'ID');
 
 
 echo json_encode($product[0]);
