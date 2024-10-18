@@ -41,11 +41,7 @@ class Database
     }
 
     public function query($sql_prompt, $params = [])
-    {
-        if (!is_array($params)) {
-            die("Params must be an array");
-        }
-    
+    {    
         $stmt = $this->conn->prepare($sql_prompt);
         if ($stmt === false) {
             die("Prepare failed: " . $this->conn->error);
