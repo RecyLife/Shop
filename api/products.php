@@ -9,10 +9,24 @@ $db = new Database;
 
 $products = [];
 
-if (isset($_GET['category'])) {
-    $categoryFilter = $db->escapeStrings($_GET["category"]);
-    if (isset($_GET["q"])) {
-        $searchQuery = $db->escapeStrings($_GET["q"]);
+if(isset($_POST["IDs"])){
+    $ids = $_POST["IDs"];
+    $products = $db->select("
+    SELECT 
+        recytech_products.ID as ID, 
+        recytech_products.title as title, 
+        recytech_products.quantity as quantity,
+        recytech_products.price as price,
+        recytech_categories.title as category
+    FROM recytech_products
+    INNER JOIN recytech_categories 
+        ON recytech_products.category_ID = recytech_categories.ID
+    WHERE recytech_products.ID IN (?)", [$db-> escapeStrings(implode(",", $ids))]);
+}
+else if (isset($$_POST['category'])) {
+    $categoryFilter = $db->escapeStrings($$_POST["category"]);
+    if (isset($$_POST["q"])) {
+        $searchQuery = $db->escapeStrings($$_POST["q"]);
         $products = $db->select("
         SELECT 
             recytech_products.ID as ID, 
@@ -38,8 +52,8 @@ if (isset($_GET['category'])) {
             ON recytech_products.category_ID = recytech_categories.ID
         WHERE recytech_categories.ID = ?", [$categoryFilter]);
     }
-} else if (isset($_GET["q"])) {
-    $searchQuery = $db->escapeStrings($_GET["q"]);
+} else if (isset($$_POST["q"])) {
+    $searchQuery = $db->escapeStrings($$_POST["q"]);
     $products = $db->select("
     SELECT 
         recytech_products.ID as ID, 
