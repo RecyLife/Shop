@@ -7,28 +7,59 @@ include_once(dirname(__FILE__) . "/utils/database.php");
 
 $db = new Database;
 
-if(isset($_GET['category'])){
-    $categoryFilter = $db -> escapeStrings($_GET["category"]);
-    $products = $db -> select("
+$products = [];
+
+if (isset($_GET['category'])) {
+    $categoryFilter = $db->escapeStrings($_GET["category"]);
+    if (isset($_GET["q"])) {
+        $searchQuery = $db->escapeStrings($_GET["q"]);
+        $products = $db->select("
+        SELECT 
+            recytech_products.ID as ID, 
+            recytech_products.title as title, 
+            recytech_products.quantity as quantity,
+            recytech_products.price as price,
+            recytech_categories.title as category
+        FROM recytech_products
+        INNER JOIN recytech_categories 
+            ON recytech_products.category_ID = recytech_categories.ID
+        WHERE recytech_products.title LIKE ? 
+        AND recytech_categories.ID = ?", ["%$searchQuery%", $categoryFilter]);
+    } else {
+        $products = $db->select("
+        SELECT 
+            recytech_products.ID as ID, 
+            recytech_products.title as title, 
+            recytech_products.quantity as quantity,
+            recytech_products.price as price,
+            recytech_categories.title as category
+        FROM recytech_products
+        INNER JOIN recytech_categories 
+            ON recytech_products.category_ID = recytech_categories.ID
+        WHERE recytech_categories.ID = ?", [$categoryFilter]);
+    }
+} else if (isset($_GET["q"])) {
+    $searchQuery = $db->escapeStrings($_GET["q"]);
+    $products = $db->select("
     SELECT 
         recytech_products.ID as ID, 
         recytech_products.title as title, 
         recytech_products.quantity as quantity,
         recytech_products.price as price,
         recytech_categories.title as category
-    from recytech_products
+    FROM recytech_products
     INNER JOIN recytech_categories 
         ON recytech_products.category_ID = recytech_categories.ID
-    WHERE recytech_categories.ID = ?", [$categoryFilter]);
-}else {
-    $products = $db -> select("
+    WHERE recytech_products.title LIKE ?", ["%$searchQuery%"]);
+} else {
+    $products = $db->select("
     SELECT 
         recytech_products.ID as ID, 
         recytech_products.title as title, 
         recytech_products.quantity as quantity,
         recytech_products.price as price,
         recytech_categories.title as category
-    from recytech_products
+    FROM recytech_products
     INNER JOIN recytech_categories 
         ON recytech_products.category_ID = recytech_categories.ID");
 }
