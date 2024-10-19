@@ -7,16 +7,31 @@ include_once(dirname(__FILE__) . "/utils/database.php");
 
 $db = new Database;
 
-$products = $db -> select("
-SELECT 
-    recytech_products.ID as ID, 
-    recytech_products.title as title, 
-    recytech_products.quantity as quantity,
-    recytech_products.price as price,
-    recytech_categories.title as category
-from recytech_products
-INNER JOIN recytech_categories 
-    ON recytech_products.category_ID = recytech_categories.ID");
+if(isset($_GET['category'])){
+    $categoryFilter = $db -> escapeStrings($_GET["category"]);
+    $products = $db -> select("
+    SELECT 
+        recytech_products.ID as ID, 
+        recytech_products.title as title, 
+        recytech_products.quantity as quantity,
+        recytech_products.price as price,
+        recytech_categories.title as category
+    from recytech_products
+    INNER JOIN recytech_categories 
+        ON recytech_products.category_ID = recytech_categories.ID
+    WHERE recytech_categories.ID = ?", [$categoryFilter]);
+}else {
+    $products = $db -> select("
+    SELECT 
+        recytech_products.ID as ID, 
+        recytech_products.title as title, 
+        recytech_products.quantity as quantity,
+        recytech_products.price as price,
+        recytech_categories.title as category
+    from recytech_products
+    INNER JOIN recytech_categories 
+        ON recytech_products.category_ID = recytech_categories.ID");
+}
 
 $products = array_values($products);
 foreach ($products as &$product) {
