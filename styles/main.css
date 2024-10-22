@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "Raleway-SemiBold";
+    src: url(../fonts/Raleway-SemiBold.ttf);
+}
+
+:root {
+    /* Main */
+    --standart-border-radius: 25px;
+    --standart-blur: 15px;
+    --primary-color: #E8DFCA;
+    --secondary-color: #4F6F52;
+    
+    /* Header */
+    --header-height: 80px;
+    --header-text-color: #FFFFFF;
+
+    /* Standart assets */
+    --standart-asset-background: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Raleway-SemiBold";
+}
+
+body {
+    background-color: var(--primary-color);
+}
