@@ -11,21 +11,26 @@
     <link rel="icon" href="images/favicons/favicon.svg" type="image/svg+xml">
     <!-- Scripts -->
     <script src="scripts/cart.js" defer></script>
-    <!-- Styles -->
-    <link rel="stylesheet" href="./styles/main.css">
-    <link rel="stylesheet" href="./styles/header.css">
+    <script src="scripts/search.js" defer></script>
     <!-- Standart assets -->
     <link rel="stylesheet" href="./styles/standart-assets/input.css">
     <link rel="stylesheet" href="styles/standart-assets/button.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/header.css">
 </head>
 
 <body>
     <header class="body-header">
-        <img class="body-header-logo" src="./images/recytech_logo.png" alt="recytech logo" onclick="window.location.reload()">
-        <h1 class="body-header-title">RecyTech</h1>
-        <input class="standart-input body-header-input" placeholder="Chercher un produit">
-        <button class="standart-button body-header-search-button">Recherche</button>
-        <button class="standart-button body-header-cart-button">Lorem</button>
+        <div class="body-header-logo">
+            <img class="body-header-logo-image" src="./images/recytech_logo.png" alt="recytech logo" onclick="window.location.reload()">
+            <h1 class="body-header-logo-title">RecyTech</h1>
+        </div>
+        <div class="body-header-search">
+            <input id="bodyHeaderSearchInput" class="standart-input body-header-search-input" placeholder="Chercher un produit">
+            <button id="bodyHeaderSearchButton" class="body-header-search-button"><img class="body-header-search-button-icon" src="./images/svg/search.svg" alt="search icon"></button>
+        </div>
+        <button class="standart-button body-header-button-cart"><img class="body-header-button-cart-image" src="./images/svg/shopping-bag.svg" alt="shopping bag"></button>
     </header>
 </body>
 
