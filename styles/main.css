@@ -5,8 +5,8 @@
 
 :root {
     /* Main */
-    --standart-border-radius: 25px;
-    --standart-blur: 15px;
+    --standard-border-radius: 25px;
+    --standard-blur: 15px;
     --primary-color: #E8DFCA;
     --secondary-color: #4F6F52;
     
@@ -14,8 +14,8 @@
     --header-height: 80px;
     --header-text-color: #FFFFFF;
 
-    /* Standart assets */
-    --standart-asset-background: #FFFFFF;
+    /* standard assets */
+    --standard-asset-background: #FFFFFF;
 }
 
 * {

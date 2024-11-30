@@ -36,7 +36,7 @@
 }
 
 .body-header-search {
-    border-radius: var(--standart-border-radius);
+    border-radius: var(--standard-border-radius);
     padding-left: 12.5px;
     position: relative;
     display: flex;
@@ -85,4 +85,14 @@
 
 .body-header-button-cart-image {
     width: 18px;
+}
+
+@media screen and (max-width: 550px) {
+    .body-header-logo-title {
+        display: none;
+    }
+
+    .body-header-search {
+        width: 100%;
+    }
 }

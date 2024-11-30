@@ -1,11 +1,11 @@
-.standart-input {
-    border-radius: var(--standart-border-radius);
+.standard-input {
+    border-radius: var(--standard-border-radius);
     padding: 10px;
     padding-left: 18px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.standart-input:focus {
+.standard-input:focus {
     outline: none;
 }
 

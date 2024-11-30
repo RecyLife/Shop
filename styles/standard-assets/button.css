@@ -1,0 +1,16 @@
+.standard-button {
+    border-radius: var(--standard-border-radius);
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    background: var(--standard-asset-background);
+    transition: 0.15s;
+    cursor: pointer;
+}
+
+.standard-button:hover {
+    transform: scale(0.98);
+}
+
+.standard-button:focus {
+    outline: none;
+}
