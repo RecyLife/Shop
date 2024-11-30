@@ -1,5 +1,5 @@
 .body-header {
-    padding: 0px 20px 0px 20px;
+    padding: 0 20px;
     top: 0;
     position: fixed;
     display: flex;
@@ -9,8 +9,8 @@
     width: 100%;
     height: var(--header-height);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(var(--standart-blur));
-    -webkit-backdrop-filter: blur(var(--standart-blur));
+    backdrop-filter: blur(var(--standard-blur));
+    -webkit-backdrop-filter: blur(var(--standard-blur));
     background: rgba(255, 255, 255, 0.1);
     z-index: 2;
 }
@@ -35,19 +35,19 @@
     color: var(--header-text-color);
 }
 
-.body-header-search {    
+.body-header-search {
+    border-radius: var(--standart-border-radius);
     padding-left: 12.5px;
     position: relative;
     display: flex;
     align-items: center;
     width: 50%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: var(--standart-border-radius);
 }
 
 .body-header-search-input {
-    border-radius: 0px;
-    padding-left: 0px;
+    border-radius: 0;
+    padding-left: 0;
     width: calc(100% - 35px);
     box-shadow: none;
     background: none;
@@ -56,34 +56,29 @@
 .body-header-search-button {
     padding-top: 3.5px;
     padding-right: 5px;
-    border-radius: 0px var(--standart-border-radius) var(--standart-border-radius) 0px;
+    border-radius: 0 var(--standard-border-radius) var(--standard-border-radius) 0;
     position: absolute;
     width: 37.5px;
     height: 100%;
-    right: 0px;
+    right: 0;
     background: none;
     transition: background-color 0.35s;
 }
 
 .body-header-search-button.active {
     cursor: pointer;
-    background-color: var(--standart-asset-background);
+    background-color: var(--standard-asset-background);
 }
 
 .body-header-search-button-icon {
     width: 16px;
-    transition: transform 0.15s;
-}
-
-.body-header-search-button:hover.active .body-header-search-button-icon {
-    transform: scale(0.96);
 }
 
 .body-header-button-cart {
     display: flex;
     justify-content: center;
     align-self: center;
-    padding: 0px;
+    padding: 0;
     height: 36px;
     min-width: 36px;
 }
@@ -91,5 +86,3 @@
 .body-header-button-cart-image {
     width: 18px;
 }
-
-
